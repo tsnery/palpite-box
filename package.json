@@ -1,0 +1,27 @@
+{
+  "name": "palpite-box",
+  "version": "1.0.0",
+  "description": "Fullstack Master exercise.",
+  "main": "index.js",
+  "scripts": {
+    "dev":"next",
+    "start":"next start",
+    "build":"next build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsnery/palpite-box.git"
+  },
+  "keywords": [],
+  "author": "Tainan Nery",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsnery/palpite-box/issues"
+  },
+  "homepage": "https://github.com/tsnery/palpite-box#readme",
+  "dependencies": {
+    "next": "^10.0.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
