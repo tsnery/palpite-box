@@ -2,6 +2,23 @@ import React from 'react'
 import Link from 'next/link'
 
 const Pesquisa = () => {
+    const save = async() => {
+        const form = {
+            Nome: 'ttt',
+            Email:'@email',
+            Whatsapp:'5465465'
+        }
+        try {
+            const response = await fetch('/api/save', {
+                method: 'POST',
+                body: JSON.stringify(form)
+            })
+            const data = await response.json()
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        } 
+    }
     return (
         <div>
             <h1 className='text-center font-bold mb-4    text-2xl'>Críticas e sugestões</h1>
@@ -18,6 +35,10 @@ const Pesquisa = () => {
                 <input type='text' className='p-4 block shadow bg-blue-100 w-80 rounded my-2'/>
                 <label className='font-bold'>Sua crítico ou sugestão:</label>
                 <input type='text' className='p-4 block shadow bg-blue-100 w-80 rounded my-2'/>
+                <button 
+                    className="bg-blue-400 px-12 py-4 rounded font-bold text-white shadow-lg hover:shadow" 
+                    onClick={save}>Enviar
+                </button>
             </div>
         </div>
     )
