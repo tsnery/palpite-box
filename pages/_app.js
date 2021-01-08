@@ -1,14 +1,6 @@
 import React from 'react'
 import '../css/styles.css'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-const MyApp = ({Component, pageProps}) => {
-    return (
-        <div>
-            <Header/>
-            <Component {...pageProps}/>
-            <Footer/>
-        </div>
-    )
-}
+import Layout from '../components/Layout'
+const MyApp = ({Component, pageProps}) => {return (<Layout><Component {...pageProps}/></Layout>)}
+
 export default MyApp
