@@ -8,7 +8,7 @@ const Footer = () => {
                 <a className='hover:underline' href='https://github.com/tsnery' target='_blank'>Github</a>
                 <div className='mt-2'>
                     <img className='inline px-4' src='/logo_semana_fsm.png'/>
-                    <img className='inline px-4' src='/logo_palpitebox.png'/>
+                    <img className='inline px-4' src='/logo_devpleno.png'/>
                 </div>
             </div>
         </div>
