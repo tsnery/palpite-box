@@ -1,11 +1,13 @@
 import {GoogleSpreadsheet} from 'google-spreadsheet'
-import credentials from '../../credentials.json'
 
-const doc = new GoogleSpreadsheet('1-QnW6BxltUBdLhsPa1Ys79KZ7vIiOHIOxZwZH811abI')
+const doc = new GoogleSpreadsheet(process.env.SHEET_DOC_ID)
 
 export default async(req,res) => {
     try {
-        await doc.useServiceAccountAuth(credentials)
+        await doc.useServiceAccountAuth({
+            client_email: process.env.SHEET_CLIENT_EMAIL,
+            private_key: process.env.SHEET_PRIVATE_KEY
+        })
         await doc.loadInfo()
     
         const sheet = await doc.sheetsByIndex[2]
@@ -21,7 +23,7 @@ export default async(req,res) => {
     } catch (err) {
         res.end(JSON.stringify({
             showCoupon: false,
-            description: ''
+            description: 'Não há promoção no momento'
         }))
     }
 
