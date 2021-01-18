@@ -3,6 +3,11 @@ import credentials from '../../credentials.json'
 import moment from 'moment'
 const doc = new GoogleSpreadsheet('1-QnW6BxltUBdLhsPa1Ys79KZ7vIiOHIOxZwZH811abI')
 
+const cupomGenerator = () => {
+    const convertion = parseInt(moment().format('YYMMDDHHmmssSSS')).toString(16).toUpperCase()
+    return convertion.substr(0,4) + '-' + convertion.substr(4,4) + '-' + convertion.substr(8,4)
+}
+
 export default async (req,res) => {
     try {
         await doc.useServiceAccountAuth(credentials)
@@ -20,11 +25,11 @@ export default async (req,res) => {
         let Cupom = ''
         let Promo = ''
         if(statusPromo.value == 'VERDADEIRO') {
-            Cupom = 'temporario'
+            Cupom = cupomGenerator()
             Promo = descriptionPromo.value
         } else {
             Cupom = 'Cupom indisponível'
-            Promo = 'Não há promoção no momento.'
+            Promo = 'Não há promoção no momento'
         }
         await sheet.addRow({
             Nome: data.Nome,
@@ -36,7 +41,11 @@ export default async (req,res) => {
             Nota: 5,
             'Data preenchimento': moment().format('DD/MM/YYYY HH:mm:ss')
         })
-        res.end(req.body)
+        res.end(JSON.stringify({
+            showCoupon: Cupom !== 'Cupom indisponível',
+            Cupom,
+            Promo
+        }))
     } catch (err) {
         console.log(err)
         res.end('Error')
