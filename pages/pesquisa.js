@@ -6,9 +6,11 @@ const Pesquisa = () => {
     Email: "",
     Whatsapp: "",
     Opiniao: "",
+    Nota:"",
   });
   const [success, setSuccess] = useState(false);
   const [retorno, setRetorno] = useState({});
+  const notas = [ 0,1,2,3,4,5];
   const save = async () => {
     try {
       const response = await fetch("/api/save", {
@@ -76,6 +78,19 @@ const Pesquisa = () => {
             onChange={formHandler}
             required
           />
+          <div className="flex">
+          { notas.map(nota =>
+            <label className="block text-center mr-6">{nota}<br/>
+            <input 
+            type="radio" 
+            name="Nota" 
+            value={nota}
+            onClick={formHandler}
+            required
+            />
+            </label>
+          )}
+          </div>
           <button
             className="bg-blue-400 px-12 py-4 mt-2 mb-4 rounded font-bold text-white shadow-lg hover:shadow"
             onClick={save}

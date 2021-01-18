@@ -38,7 +38,7 @@ export default async (req,res) => {
             Opiniao:data.Opiniao,
             Cupom,
             Promo,
-            Nota: 5,
+            Nota: data.Nota,
             'Data preenchimento': moment().format('DD/MM/YYYY HH:mm:ss')
         })
         res.end(JSON.stringify({
